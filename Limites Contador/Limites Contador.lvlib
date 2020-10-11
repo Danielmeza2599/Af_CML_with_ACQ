@@ -5,7 +5,7 @@
 	<Property Name="NI.Lib.Version" Type="Str">1.0.0.0</Property>
 	<Item Name="Messages for this Actor" Type="Folder">
 		<Item Name="SolicitarLimites Msg.lvclass" Type="LVClass" URL="../Limites Contador Messages/SolicitarLimites Msg/SolicitarLimites Msg.lvclass"/>
-		<Item Name="StartStop Msg.lvclass" Type="LVClass" URL="../Limites Contador Messages/StartStop Msg/StartStop Msg.lvclass"/>
+		<Item Name="StartStopLimites Msg.lvclass" Type="LVClass" URL="../Limites Contador Messages/StartStopLimites Msg/StartStopLimites Msg.lvclass"/>
 	</Item>
 	<Item Name="Limites Contador.lvclass" Type="LVClass" URL="../Limites Contador/Limites Contador.lvclass"/>
 </Library>
