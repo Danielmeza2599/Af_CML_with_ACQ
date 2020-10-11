@@ -23,6 +23,10 @@
 				<Item Name="Guardar Tipo CSV.lvlib" Type="Library" URL="../Guardar Tipo CSV/Guardar Tipo CSV.lvlib"/>
 			</Item>
 		</Item>
+		<Item Name="Contador Digital" Type="Folder">
+			<Item Name="GUI DigitalCount.lvlib" Type="Library" URL="../GUI DigitalCount/GUI DigitalCount.lvlib"/>
+			<Item Name="Limites Contador.lvlib" Type="Library" URL="../Limites Contador/Limites Contador.lvlib"/>
+		</Item>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="Actor Framework.lvlib" Type="Library" URL="/&lt;vilib&gt;/ActorFramework/Actor Framework.lvlib"/>
