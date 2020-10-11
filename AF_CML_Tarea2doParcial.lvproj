@@ -1,6 +1,7 @@
 ﻿<?xml version='1.0' encoding='UTF-8'?>
 <Project Type="Project" LVVersion="20008000">
 	<Item Name="My Computer" Type="My Computer">
+		<Property Name="NI.SortType" Type="Int">3</Property>
 		<Property Name="server.app.propertiesEnabled" Type="Bool">true</Property>
 		<Property Name="server.control.propertiesEnabled" Type="Bool">true</Property>
 		<Property Name="server.tcp.enabled" Type="Bool">false</Property>
@@ -14,10 +15,19 @@
 			<Item Name="GUI SeñalActualizable.lvlib" Type="Library" URL="../GUI SeñalActualizable/GUI SeñalActualizable.lvlib"/>
 			<Item Name="Measurement Señal Actualizable.lvlib" Type="Library" URL="../Measurement Señal Actualizable/Measurement Señal Actualizable.lvlib"/>
 		</Item>
+		<Item Name="Almacenamiento de Datos" Type="Folder">
+			<Item Name="Texto Plano DATA" Type="Folder">
+				<Item Name="Guardar TextoPlano.lvlib" Type="Library" URL="../Guardar TextoPlano/Guardar TextoPlano.lvlib"/>
+			</Item>
+			<Item Name="CSV DATA" Type="Folder">
+				<Item Name="Guardar Tipo CSV.lvlib" Type="Library" URL="../Guardar Tipo CSV/Guardar Tipo CSV.lvlib"/>
+			</Item>
+		</Item>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="Actor Framework.lvlib" Type="Library" URL="/&lt;vilib&gt;/ActorFramework/Actor Framework.lvlib"/>
 				<Item Name="Casting Utility For Actors.vim" Type="VI" URL="/&lt;vilib&gt;/ActorFramework/Actor/Casting Utility For Actors.vim"/>
+				<Item Name="Clear Errors.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Clear Errors.vi"/>
 				<Item Name="Error Cluster From Error Code.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Error Cluster From Error Code.vi"/>
 				<Item Name="Get LV Class Name.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/LVClass/Get LV Class Name.vi"/>
 				<Item Name="High Resolution Relative Seconds.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/High Resolution Relative Seconds.vi"/>
