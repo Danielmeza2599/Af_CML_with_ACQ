@@ -1,0 +1,1133 @@
+= Tarea AF con CML
+Daniel Meza
+:doctype: book
+:toc: 
+:imagesdir: Images
+:sectnums: 
+:toclevels: 3
+:chapter-label: Section
+
+== Project description
+
+No description found (add content in project description)
+
+== Code component descriptions
+
+=== DQMH(R) modules
+
+This section describes DQMH(R) module responsibilities and relationships.
+
+==== Preamble
+
+A DQMH module is the main component of an architecture based on DQMH(R) framework. A DQMH module is used to implement a section of the application that has one responsibility.
+
+DQMH(R) framework defines two different type of DQMH module.  
+
+====
+*Singleton:*
+
+A Singleton DQMH module can have only one instance running at any given time.
+====
+
+====
+*Cloneable:*
+
+A Cloneable DQMH module can have one or multiple instances running in parallel.
+====
+
+DQMH(R) framework defines two different ways to carry data throughout the application and with both other DQMH modules and non-DQMH based code.
+
+====
+*Request events:*
+
+A request is a code that fires an event requesting the DQMH module to do something. Multiple locations in the code can send events to the DQMH module.
+
+Request events are many-to-one.
+
+Requests are usually named using imperative tense.
+====
+
+====
+*Broadcast events:*
+
+A broadcast is a code that fires an event broadcasting that the DQMH module did something. Multiple Event Structures can register to handle the Broadcast Events.
+
+Broadcast Events are one-to-many.
+
+Broadcasts are usually named using past tense or passive voice.
+====
+
+NOTE: Refer to the DQMH(R) framework official http://delacor.com/documentation/dqmh-html/[documentation] to find more details on how the framework works
+
+
+The following section gives you details on the project architecture relying on this framework.
+It gives you an overview of the modules' interaction and detailed information on each module.
+
+Graphs used in this section have the following legend:
+
+*Components:*
+
+
+[graphviz, format="png", align="center"]
+....
+digraph G938884 {
+rankdir=LR;
+edge[dir=both color=black  arrowhead=normal arrowtail=none style=filled penwidth=1]
+node[color=black shape=box]
+"DQMH module / Lvlib"[color=black shape=component]
+"Vi"[color=skyblue shape=note]
+}
+....
+
+*Events:*
+
+[graphviz, format="png", align="center"]
+....
+digraph G635784 {
+rankdir=LR;
+edge[dir=both color=black  arrowhead=normal arrowtail=none style=filled penwidth=1]
+node[color=black shape=box]
+" "[color=white shape=box]
+"  "[color=white shape=box]
+"   "[color=white shape=box]
+"    "[color=white shape=box]
+" " -> "  " [label="Request to a DQMH module" dir=both color=forestgreen  arrowhead=normal arrowtail=none style=filled penwidth=1];
+"   " -> "    " [label="Broadcast from a DQMH module" dir=both color=goldenrod  arrowhead=normal arrowtail=none style=dashed penwidth=1];
+}
+....
+
+*Start and Stop module callers:*
+
+[graphviz, format="png", align="center"]
+....
+digraph G768140 {
+rankdir=LR;
+edge[dir=both color=black  arrowhead=normal arrowtail=none style=filled penwidth=1]
+node[color=black shape=box]
+"Start Module
+caller"[color=black shape=component]
+"Start Module"[color=yellowgreen shape=note]
+"Start Module" -> "Start Module
+caller" [label="Called by" dir=both color=yellowgreen  arrowhead=odot arrowtail=inv style=filled penwidth=1];
+}
+....
+
+[graphviz, format="png", align="center"]
+....
+digraph G39743 {
+rankdir=LR;
+edge[dir=both color=black  arrowhead=normal arrowtail=none style=filled penwidth=1]
+node[color=black shape=box]
+"Stop Module
+caller"[color=black shape=component]
+"Stop Module"[color=tomato shape=note]
+"Stop Module" -> "Stop Module
+caller" [label="Called by" dir=both color=tomato  arrowhead=odot arrowtail=inv style=dotted penwidth=1];
+}
+....
+
+
+==== Modules overview
+
+This project contains the following modules.
+
+.Modules list
+|===
+|Singleton|Cloneable
+
+|===
+
+This graph represents the links between all DQMH modules.
+
+[graphviz, format="png", align="center"]
+....
+digraph G174593 {
+rankdir=LR;
+edge[dir=both color=black  arrowhead=normal arrowtail=none style=filled penwidth=1]
+node[color=black shape=box]
+}
+....
+
+
+=== Libraries
+
+This section describes the libraries contained in the project.
+
+==== GUI SeñalActualizable.lvlib
+
+No description found (add content in lvlib description)
+
+
+==== Measurement Señal Actualizable.lvlib
+
+No description found (add content in lvlib description)
+
+
+==== Guardar TextoPlano.lvlib
+
+No description found (add content in lvlib description)
+
+
+==== Guardar Tipo CSV.lvlib
+
+No description found (add content in lvlib description)
+
+
+==== GUI DigitalCount.lvlib
+
+No description found (add content in lvlib description)
+
+
+==== Limites Contador.lvlib
+
+No description found (add content in lvlib description)
+
+
+=== Classes
+
+This section describes the classes contained in the project.
+
+==== Datos de la grafica Msg.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== UpdateGrafica Msg.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== GUI SeñalActualizable.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== RecibirParametros Msg.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== StartStop Msg.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== Measurement Señal Actualizable.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== DataAndSave Msg.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== Enviar Iniciar Guardado Msg.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== Guardar TextoPlano.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== Enviar datos Msg.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== Start Save Msg.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== Guardar Tipo CSV.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== Final Count Msg.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== GUI DigitalCount.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== SolicitarLimites Msg.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== StartStopLimites Msg.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== Limites Contador.lvclass
+
+No description found (add content in lvlib description)
+
+
+== VI descriptions
+
+=== DQMH(R) modules
+
+This section describes DQMH(R) modules events.
+
+=== Libraries
+
+This section describes libraries public VIs.
+
+==== GUI SeñalActualizable.lvlib
+
+===== GUI SeñalActualizable.lvlib:Datos de la grafica Msg.lvclass:Send Datos de la grafica.vi
+
+:imgpath: GUI SeñalActualizable.lvlib_Datos de la grafica Msg.lvclass_Send Datos de la grafica.vi.png
+image::{imgpath}[GUI SeñalActualizable.lvlib:Datos de la grafica Msg.lvclass:Send Datos de la grafica.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== GUI SeñalActualizable.lvlib:Datos de la grafica Msg.lvclass:Do.vi
+
+:imgpath: GUI SeñalActualizable.lvlib_Datos de la grafica Msg.lvclass_Do.vi.png
+image::{imgpath}[GUI SeñalActualizable.lvlib:Datos de la grafica Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+===== GUI SeñalActualizable.lvlib:UpdateGrafica Msg.lvclass:Send UpdateGrafica.vi
+
+:imgpath: GUI SeñalActualizable.lvlib_UpdateGrafica Msg.lvclass_Send UpdateGrafica.vi.png
+image::{imgpath}[GUI SeñalActualizable.lvlib:UpdateGrafica Msg.lvclass:Send UpdateGrafica.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== GUI SeñalActualizable.lvlib:UpdateGrafica Msg.lvclass:Do.vi
+
+:imgpath: GUI SeñalActualizable.lvlib_UpdateGrafica Msg.lvclass_Do.vi.png
+image::{imgpath}[GUI SeñalActualizable.lvlib:UpdateGrafica Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+===== GUI SeñalActualizable.lvlib:GUI SeñalActualizable.lvclass:Datos de la grafica.vi
+
+:imgpath: GUI SeñalActualizable.lvlib_GUI SeñalActualizable.lvclass_Datos de la grafica.vi.png
+image::{imgpath}[GUI SeñalActualizable.lvlib:GUI SeñalActualizable.lvclass:Datos de la grafica.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== GUI SeñalActualizable.lvlib:GUI SeñalActualizable.lvclass:UpdateGrafica.vi
+
+:imgpath: GUI SeñalActualizable.lvlib_GUI SeñalActualizable.lvclass_UpdateGrafica.vi.png
+image::{imgpath}[GUI SeñalActualizable.lvlib:GUI SeñalActualizable.lvclass:UpdateGrafica.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+==== Measurement Señal Actualizable.lvlib
+
+===== Measurement Señal Actualizable.lvlib:RecibirParametros Msg.lvclass:Send RecibirParametros.vi
+
+:imgpath: Measurement Señal Actualizable.lvlib_RecibirParametros Msg.lvclass_Send RecibirParametros.vi.png
+image::{imgpath}[Measurement Señal Actualizable.lvlib:RecibirParametros Msg.lvclass:Send RecibirParametros.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== Measurement Señal Actualizable.lvlib:RecibirParametros Msg.lvclass:Do.vi
+
+:imgpath: Measurement Señal Actualizable.lvlib_RecibirParametros Msg.lvclass_Do.vi.png
+image::{imgpath}[Measurement Señal Actualizable.lvlib:RecibirParametros Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+===== Measurement Señal Actualizable.lvlib:StartStop Msg.lvclass:Send StartStop.vi
+
+:imgpath: Measurement Señal Actualizable.lvlib_StartStop Msg.lvclass_Send StartStop.vi.png
+image::{imgpath}[Measurement Señal Actualizable.lvlib:StartStop Msg.lvclass:Send StartStop.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== Measurement Señal Actualizable.lvlib:StartStop Msg.lvclass:Do.vi
+
+:imgpath: Measurement Señal Actualizable.lvlib_StartStop Msg.lvclass_Do.vi.png
+image::{imgpath}[Measurement Señal Actualizable.lvlib:StartStop Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+===== Measurement Señal Actualizable.lvlib:Measurement Señal Actualizable.lvclass:destroyer Events.vi
+
+:imgpath: Measurement Señal Actualizable.lvlib_Measurement Señal Actualizable.lvclass_destroyer Events.vi.png
+image::{imgpath}[Measurement Señal Actualizable.lvlib:Measurement Señal Actualizable.lvclass:destroyer Events.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Measurement Señal Actualizable.lvlib:Measurement Señal Actualizable.lvclass:RecibirParametros.vi
+
+:imgpath: Measurement Señal Actualizable.lvlib_Measurement Señal Actualizable.lvclass_RecibirParametros.vi.png
+image::{imgpath}[Measurement Señal Actualizable.lvlib:Measurement Señal Actualizable.lvclass:RecibirParametros.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Measurement Señal Actualizable.lvlib:Measurement Señal Actualizable.lvclass:StartStop.vi
+
+:imgpath: Measurement Señal Actualizable.lvlib_Measurement Señal Actualizable.lvclass_StartStop.vi.png
+image::{imgpath}[Measurement Señal Actualizable.lvlib:Measurement Señal Actualizable.lvclass:StartStop.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+==== Guardar TextoPlano.lvlib
+
+===== Guardar TextoPlano.lvlib:DataAndSave Msg.lvclass:Send DataAndSave.vi
+
+:imgpath: Guardar TextoPlano.lvlib_DataAndSave Msg.lvclass_Send DataAndSave.vi.png
+image::{imgpath}[Guardar TextoPlano.lvlib:DataAndSave Msg.lvclass:Send DataAndSave.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== Guardar TextoPlano.lvlib:DataAndSave Msg.lvclass:Do.vi
+
+:imgpath: Guardar TextoPlano.lvlib_DataAndSave Msg.lvclass_Do.vi.png
+image::{imgpath}[Guardar TextoPlano.lvlib:DataAndSave Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+===== Guardar TextoPlano.lvlib:Enviar Iniciar Guardado Msg.lvclass:Send Enviar Iniciar Guardado.vi
+
+:imgpath: Guardar TextoPlano.lvlib_Enviar Iniciar Guardado Msg.lvclass_Send Enviar Iniciar Guardado.vi.png
+image::{imgpath}[Guardar TextoPlano.lvlib:Enviar Iniciar Guardado Msg.lvclass:Send Enviar Iniciar Guardado.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== Guardar TextoPlano.lvlib:Enviar Iniciar Guardado Msg.lvclass:Do.vi
+
+:imgpath: Guardar TextoPlano.lvlib_Enviar Iniciar Guardado Msg.lvclass_Do.vi.png
+image::{imgpath}[Guardar TextoPlano.lvlib:Enviar Iniciar Guardado Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+===== Guardar TextoPlano.lvlib:Guardar TextoPlano.lvclass:DataAndSave.vi
+
+:imgpath: Guardar TextoPlano.lvlib_Guardar TextoPlano.lvclass_DataAndSave.vi.png
+image::{imgpath}[Guardar TextoPlano.lvlib:Guardar TextoPlano.lvclass:DataAndSave.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Guardar TextoPlano.lvlib:Guardar TextoPlano.lvclass:Destroy UserEvents.vi
+
+:imgpath: Guardar TextoPlano.lvlib_Guardar TextoPlano.lvclass_Destroy UserEvents.vi.png
+image::{imgpath}[Guardar TextoPlano.lvlib:Guardar TextoPlano.lvclass:Destroy UserEvents.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Guardar TextoPlano.lvlib:Guardar TextoPlano.lvclass:Enviar Iniciar Guardado.vi
+
+:imgpath: Guardar TextoPlano.lvlib_Guardar TextoPlano.lvclass_Enviar Iniciar Guardado.vi.png
+image::{imgpath}[Guardar TextoPlano.lvlib:Guardar TextoPlano.lvclass:Enviar Iniciar Guardado.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+==== Guardar Tipo CSV.lvlib
+
+===== Guardar Tipo CSV.lvlib:Enviar datos Msg.lvclass:Send Enviar datos.vi
+
+:imgpath: Guardar Tipo CSV.lvlib_Enviar datos Msg.lvclass_Send Enviar datos.vi.png
+image::{imgpath}[Guardar Tipo CSV.lvlib:Enviar datos Msg.lvclass:Send Enviar datos.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== Guardar Tipo CSV.lvlib:Enviar datos Msg.lvclass:Do.vi
+
+:imgpath: Guardar Tipo CSV.lvlib_Enviar datos Msg.lvclass_Do.vi.png
+image::{imgpath}[Guardar Tipo CSV.lvlib:Enviar datos Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+===== Guardar Tipo CSV.lvlib:Start Save Msg.lvclass:Send Start Save.vi
+
+:imgpath: Guardar Tipo CSV.lvlib_Start Save Msg.lvclass_Send Start Save.vi.png
+image::{imgpath}[Guardar Tipo CSV.lvlib:Start Save Msg.lvclass:Send Start Save.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== Guardar Tipo CSV.lvlib:Start Save Msg.lvclass:Do.vi
+
+:imgpath: Guardar Tipo CSV.lvlib_Start Save Msg.lvclass_Do.vi.png
+image::{imgpath}[Guardar Tipo CSV.lvlib:Start Save Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+===== Guardar Tipo CSV.lvlib:Guardar Tipo CSV.lvclass:Destroyer UserEvent.vi
+
+:imgpath: Guardar Tipo CSV.lvlib_Guardar Tipo CSV.lvclass_Destroyer UserEvent.vi.png
+image::{imgpath}[Guardar Tipo CSV.lvlib:Guardar Tipo CSV.lvclass:Destroyer UserEvent.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Guardar Tipo CSV.lvlib:Guardar Tipo CSV.lvclass:Enviar datos.vi
+
+:imgpath: Guardar Tipo CSV.lvlib_Guardar Tipo CSV.lvclass_Enviar datos.vi.png
+image::{imgpath}[Guardar Tipo CSV.lvlib:Guardar Tipo CSV.lvclass:Enviar datos.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Guardar Tipo CSV.lvlib:Guardar Tipo CSV.lvclass:Start Save
+
+:imgpath: Guardar Tipo CSV.lvlib_Guardar Tipo CSV.lvclass_Start Save.png
+image::{imgpath}[Guardar Tipo CSV.lvlib:Guardar Tipo CSV.lvclass:Start Save]
+
+*Description:*
+No description found (add content in VI description)
+
+==== GUI DigitalCount.lvlib
+
+===== GUI DigitalCount.lvlib:Final Count Msg.lvclass:Send Final Count.vi
+
+:imgpath: GUI DigitalCount.lvlib_Final Count Msg.lvclass_Send Final Count.vi.png
+image::{imgpath}[GUI DigitalCount.lvlib:Final Count Msg.lvclass:Send Final Count.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== GUI DigitalCount.lvlib:Final Count Msg.lvclass:Do.vi
+
+:imgpath: GUI DigitalCount.lvlib_Final Count Msg.lvclass_Do.vi.png
+image::{imgpath}[GUI DigitalCount.lvlib:Final Count Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+===== GUI DigitalCount.lvlib:GUI DigitalCount.lvclass:Final Count.vi
+
+:imgpath: GUI DigitalCount.lvlib_GUI DigitalCount.lvclass_Final Count.vi.png
+image::{imgpath}[GUI DigitalCount.lvlib:GUI DigitalCount.lvclass:Final Count.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+==== Limites Contador.lvlib
+
+===== Limites Contador.lvlib:SolicitarLimites Msg.lvclass:Send SolicitarLimites.vi
+
+:imgpath: Limites Contador.lvlib_SolicitarLimites Msg.lvclass_Send SolicitarLimites.vi.png
+image::{imgpath}[Limites Contador.lvlib:SolicitarLimites Msg.lvclass:Send SolicitarLimites.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== Limites Contador.lvlib:SolicitarLimites Msg.lvclass:Do.vi
+
+:imgpath: Limites Contador.lvlib_SolicitarLimites Msg.lvclass_Do.vi.png
+image::{imgpath}[Limites Contador.lvlib:SolicitarLimites Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+===== Limites Contador.lvlib:StartStopLimites Msg.lvclass:Send StartStopLimites.vi
+
+:imgpath: Limites Contador.lvlib_StartStopLimites Msg.lvclass_Send StartStopLimites.vi.png
+image::{imgpath}[Limites Contador.lvlib:StartStopLimites Msg.lvclass:Send StartStopLimites.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== Limites Contador.lvlib:StartStopLimites Msg.lvclass:Do.vi
+
+:imgpath: Limites Contador.lvlib_StartStopLimites Msg.lvclass_Do.vi.png
+image::{imgpath}[Limites Contador.lvlib:StartStopLimites Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+===== Limites Contador.lvlib:Limites Contador.lvclass:Destoyer UserEevents.vi
+
+:imgpath: Limites Contador.lvlib_Limites Contador.lvclass_Destoyer UserEevents.vi.png
+image::{imgpath}[Limites Contador.lvlib:Limites Contador.lvclass:Destoyer UserEevents.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Limites Contador.lvlib:Limites Contador.lvclass:SolicitarLimites.vi
+
+:imgpath: Limites Contador.lvlib_Limites Contador.lvclass_SolicitarLimites.vi.png
+image::{imgpath}[Limites Contador.lvlib:Limites Contador.lvclass:SolicitarLimites.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Limites Contador.lvlib:Limites Contador.lvclass:StartStopLimites.vi
+
+:imgpath: Limites Contador.lvlib_Limites Contador.lvclass_StartStopLimites.vi.png
+image::{imgpath}[Limites Contador.lvlib:Limites Contador.lvclass:StartStopLimites.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+=== Classes
+
+This section describes classes public VIs.
+
+==== Datos de la grafica Msg.lvclass
+
+===== GUI SeñalActualizable.lvlib:Datos de la grafica Msg.lvclass:Send Datos de la grafica.vi
+
+:imgpath: GUI SeñalActualizable.lvlib_Datos de la grafica Msg.lvclass_Send Datos de la grafica.vi.png
+image::{imgpath}[GUI SeñalActualizable.lvlib:Datos de la grafica Msg.lvclass:Send Datos de la grafica.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== GUI SeñalActualizable.lvlib:Datos de la grafica Msg.lvclass:Do.vi
+
+:imgpath: GUI SeñalActualizable.lvlib_Datos de la grafica Msg.lvclass_Do.vi.png
+image::{imgpath}[GUI SeñalActualizable.lvlib:Datos de la grafica Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+==== UpdateGrafica Msg.lvclass
+
+===== GUI SeñalActualizable.lvlib:UpdateGrafica Msg.lvclass:Send UpdateGrafica.vi
+
+:imgpath: GUI SeñalActualizable.lvlib_UpdateGrafica Msg.lvclass_Send UpdateGrafica.vi.png
+image::{imgpath}[GUI SeñalActualizable.lvlib:UpdateGrafica Msg.lvclass:Send UpdateGrafica.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== GUI SeñalActualizable.lvlib:UpdateGrafica Msg.lvclass:Do.vi
+
+:imgpath: GUI SeñalActualizable.lvlib_UpdateGrafica Msg.lvclass_Do.vi.png
+image::{imgpath}[GUI SeñalActualizable.lvlib:UpdateGrafica Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+==== GUI SeñalActualizable.lvclass
+
+===== GUI SeñalActualizable.lvlib:GUI SeñalActualizable.lvclass:Datos de la grafica.vi
+
+:imgpath: GUI SeñalActualizable.lvlib_GUI SeñalActualizable.lvclass_Datos de la grafica.vi.png
+image::{imgpath}[GUI SeñalActualizable.lvlib:GUI SeñalActualizable.lvclass:Datos de la grafica.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== GUI SeñalActualizable.lvlib:GUI SeñalActualizable.lvclass:UpdateGrafica.vi
+
+:imgpath: GUI SeñalActualizable.lvlib_GUI SeñalActualizable.lvclass_UpdateGrafica.vi.png
+image::{imgpath}[GUI SeñalActualizable.lvlib:GUI SeñalActualizable.lvclass:UpdateGrafica.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+==== RecibirParametros Msg.lvclass
+
+===== Measurement Señal Actualizable.lvlib:RecibirParametros Msg.lvclass:Send RecibirParametros.vi
+
+:imgpath: Measurement Señal Actualizable.lvlib_RecibirParametros Msg.lvclass_Send RecibirParametros.vi.png
+image::{imgpath}[Measurement Señal Actualizable.lvlib:RecibirParametros Msg.lvclass:Send RecibirParametros.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== Measurement Señal Actualizable.lvlib:RecibirParametros Msg.lvclass:Do.vi
+
+:imgpath: Measurement Señal Actualizable.lvlib_RecibirParametros Msg.lvclass_Do.vi.png
+image::{imgpath}[Measurement Señal Actualizable.lvlib:RecibirParametros Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+==== StartStop Msg.lvclass
+
+===== Measurement Señal Actualizable.lvlib:StartStop Msg.lvclass:Send StartStop.vi
+
+:imgpath: Measurement Señal Actualizable.lvlib_StartStop Msg.lvclass_Send StartStop.vi.png
+image::{imgpath}[Measurement Señal Actualizable.lvlib:StartStop Msg.lvclass:Send StartStop.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== Measurement Señal Actualizable.lvlib:StartStop Msg.lvclass:Do.vi
+
+:imgpath: Measurement Señal Actualizable.lvlib_StartStop Msg.lvclass_Do.vi.png
+image::{imgpath}[Measurement Señal Actualizable.lvlib:StartStop Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+==== Measurement Señal Actualizable.lvclass
+
+===== Measurement Señal Actualizable.lvlib:Measurement Señal Actualizable.lvclass:destroyer Events.vi
+
+:imgpath: Measurement Señal Actualizable.lvlib_Measurement Señal Actualizable.lvclass_destroyer Events.vi.png
+image::{imgpath}[Measurement Señal Actualizable.lvlib:Measurement Señal Actualizable.lvclass:destroyer Events.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Measurement Señal Actualizable.lvlib:Measurement Señal Actualizable.lvclass:RecibirParametros.vi
+
+:imgpath: Measurement Señal Actualizable.lvlib_Measurement Señal Actualizable.lvclass_RecibirParametros.vi.png
+image::{imgpath}[Measurement Señal Actualizable.lvlib:Measurement Señal Actualizable.lvclass:RecibirParametros.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Measurement Señal Actualizable.lvlib:Measurement Señal Actualizable.lvclass:StartStop.vi
+
+:imgpath: Measurement Señal Actualizable.lvlib_Measurement Señal Actualizable.lvclass_StartStop.vi.png
+image::{imgpath}[Measurement Señal Actualizable.lvlib:Measurement Señal Actualizable.lvclass:StartStop.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+==== DataAndSave Msg.lvclass
+
+===== Guardar TextoPlano.lvlib:DataAndSave Msg.lvclass:Send DataAndSave.vi
+
+:imgpath: Guardar TextoPlano.lvlib_DataAndSave Msg.lvclass_Send DataAndSave.vi.png
+image::{imgpath}[Guardar TextoPlano.lvlib:DataAndSave Msg.lvclass:Send DataAndSave.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== Guardar TextoPlano.lvlib:DataAndSave Msg.lvclass:Do.vi
+
+:imgpath: Guardar TextoPlano.lvlib_DataAndSave Msg.lvclass_Do.vi.png
+image::{imgpath}[Guardar TextoPlano.lvlib:DataAndSave Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+==== Enviar Iniciar Guardado Msg.lvclass
+
+===== Guardar TextoPlano.lvlib:Enviar Iniciar Guardado Msg.lvclass:Send Enviar Iniciar Guardado.vi
+
+:imgpath: Guardar TextoPlano.lvlib_Enviar Iniciar Guardado Msg.lvclass_Send Enviar Iniciar Guardado.vi.png
+image::{imgpath}[Guardar TextoPlano.lvlib:Enviar Iniciar Guardado Msg.lvclass:Send Enviar Iniciar Guardado.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== Guardar TextoPlano.lvlib:Enviar Iniciar Guardado Msg.lvclass:Do.vi
+
+:imgpath: Guardar TextoPlano.lvlib_Enviar Iniciar Guardado Msg.lvclass_Do.vi.png
+image::{imgpath}[Guardar TextoPlano.lvlib:Enviar Iniciar Guardado Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+==== Guardar TextoPlano.lvclass
+
+===== Guardar TextoPlano.lvlib:Guardar TextoPlano.lvclass:DataAndSave.vi
+
+:imgpath: Guardar TextoPlano.lvlib_Guardar TextoPlano.lvclass_DataAndSave.vi.png
+image::{imgpath}[Guardar TextoPlano.lvlib:Guardar TextoPlano.lvclass:DataAndSave.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Guardar TextoPlano.lvlib:Guardar TextoPlano.lvclass:Destroy UserEvents.vi
+
+:imgpath: Guardar TextoPlano.lvlib_Guardar TextoPlano.lvclass_Destroy UserEvents.vi.png
+image::{imgpath}[Guardar TextoPlano.lvlib:Guardar TextoPlano.lvclass:Destroy UserEvents.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Guardar TextoPlano.lvlib:Guardar TextoPlano.lvclass:Enviar Iniciar Guardado.vi
+
+:imgpath: Guardar TextoPlano.lvlib_Guardar TextoPlano.lvclass_Enviar Iniciar Guardado.vi.png
+image::{imgpath}[Guardar TextoPlano.lvlib:Guardar TextoPlano.lvclass:Enviar Iniciar Guardado.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+==== Enviar datos Msg.lvclass
+
+===== Guardar Tipo CSV.lvlib:Enviar datos Msg.lvclass:Send Enviar datos.vi
+
+:imgpath: Guardar Tipo CSV.lvlib_Enviar datos Msg.lvclass_Send Enviar datos.vi.png
+image::{imgpath}[Guardar Tipo CSV.lvlib:Enviar datos Msg.lvclass:Send Enviar datos.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== Guardar Tipo CSV.lvlib:Enviar datos Msg.lvclass:Do.vi
+
+:imgpath: Guardar Tipo CSV.lvlib_Enviar datos Msg.lvclass_Do.vi.png
+image::{imgpath}[Guardar Tipo CSV.lvlib:Enviar datos Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+==== Start Save Msg.lvclass
+
+===== Guardar Tipo CSV.lvlib:Start Save Msg.lvclass:Send Start Save.vi
+
+:imgpath: Guardar Tipo CSV.lvlib_Start Save Msg.lvclass_Send Start Save.vi.png
+image::{imgpath}[Guardar Tipo CSV.lvlib:Start Save Msg.lvclass:Send Start Save.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== Guardar Tipo CSV.lvlib:Start Save Msg.lvclass:Do.vi
+
+:imgpath: Guardar Tipo CSV.lvlib_Start Save Msg.lvclass_Do.vi.png
+image::{imgpath}[Guardar Tipo CSV.lvlib:Start Save Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+==== Guardar Tipo CSV.lvclass
+
+===== Guardar Tipo CSV.lvlib:Guardar Tipo CSV.lvclass:Destroyer UserEvent.vi
+
+:imgpath: Guardar Tipo CSV.lvlib_Guardar Tipo CSV.lvclass_Destroyer UserEvent.vi.png
+image::{imgpath}[Guardar Tipo CSV.lvlib:Guardar Tipo CSV.lvclass:Destroyer UserEvent.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Guardar Tipo CSV.lvlib:Guardar Tipo CSV.lvclass:Enviar datos.vi
+
+:imgpath: Guardar Tipo CSV.lvlib_Guardar Tipo CSV.lvclass_Enviar datos.vi.png
+image::{imgpath}[Guardar Tipo CSV.lvlib:Guardar Tipo CSV.lvclass:Enviar datos.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Guardar Tipo CSV.lvlib:Guardar Tipo CSV.lvclass:Start Save
+
+:imgpath: Guardar Tipo CSV.lvlib_Guardar Tipo CSV.lvclass_Start Save.png
+image::{imgpath}[Guardar Tipo CSV.lvlib:Guardar Tipo CSV.lvclass:Start Save]
+
+*Description:*
+No description found (add content in VI description)
+
+==== Final Count Msg.lvclass
+
+===== GUI DigitalCount.lvlib:Final Count Msg.lvclass:Send Final Count.vi
+
+:imgpath: GUI DigitalCount.lvlib_Final Count Msg.lvclass_Send Final Count.vi.png
+image::{imgpath}[GUI DigitalCount.lvlib:Final Count Msg.lvclass:Send Final Count.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== GUI DigitalCount.lvlib:Final Count Msg.lvclass:Do.vi
+
+:imgpath: GUI DigitalCount.lvlib_Final Count Msg.lvclass_Do.vi.png
+image::{imgpath}[GUI DigitalCount.lvlib:Final Count Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+==== GUI DigitalCount.lvclass
+
+===== GUI DigitalCount.lvlib:GUI DigitalCount.lvclass:Final Count.vi
+
+:imgpath: GUI DigitalCount.lvlib_GUI DigitalCount.lvclass_Final Count.vi.png
+image::{imgpath}[GUI DigitalCount.lvlib:GUI DigitalCount.lvclass:Final Count.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+==== SolicitarLimites Msg.lvclass
+
+===== Limites Contador.lvlib:SolicitarLimites Msg.lvclass:Send SolicitarLimites.vi
+
+:imgpath: Limites Contador.lvlib_SolicitarLimites Msg.lvclass_Send SolicitarLimites.vi.png
+image::{imgpath}[Limites Contador.lvlib:SolicitarLimites Msg.lvclass:Send SolicitarLimites.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== Limites Contador.lvlib:SolicitarLimites Msg.lvclass:Do.vi
+
+:imgpath: Limites Contador.lvlib_SolicitarLimites Msg.lvclass_Do.vi.png
+image::{imgpath}[Limites Contador.lvlib:SolicitarLimites Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+==== StartStopLimites Msg.lvclass
+
+===== Limites Contador.lvlib:StartStopLimites Msg.lvclass:Send StartStopLimites.vi
+
+:imgpath: Limites Contador.lvlib_StartStopLimites Msg.lvclass_Send StartStopLimites.vi.png
+image::{imgpath}[Limites Contador.lvlib:StartStopLimites Msg.lvclass:Send StartStopLimites.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== Limites Contador.lvlib:StartStopLimites Msg.lvclass:Do.vi
+
+:imgpath: Limites Contador.lvlib_StartStopLimites Msg.lvclass_Do.vi.png
+image::{imgpath}[Limites Contador.lvlib:StartStopLimites Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+==== Limites Contador.lvclass
+
+===== Limites Contador.lvlib:Limites Contador.lvclass:Destoyer UserEevents.vi
+
+:imgpath: Limites Contador.lvlib_Limites Contador.lvclass_Destoyer UserEevents.vi.png
+image::{imgpath}[Limites Contador.lvlib:Limites Contador.lvclass:Destoyer UserEevents.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Limites Contador.lvlib:Limites Contador.lvclass:SolicitarLimites.vi
+
+:imgpath: Limites Contador.lvlib_Limites Contador.lvclass_SolicitarLimites.vi.png
+image::{imgpath}[Limites Contador.lvlib:Limites Contador.lvclass:SolicitarLimites.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Limites Contador.lvlib:Limites Contador.lvclass:StartStopLimites.vi
+
+:imgpath: Limites Contador.lvlib_Limites Contador.lvclass_StartStopLimites.vi.png
+image::{imgpath}[Limites Contador.lvlib:Limites Contador.lvclass:StartStopLimites.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+== Legal Information
+
+=== Document creation
+
+This document has been generated using the following tools.
+
+==== Antidoc
+
+Project website: https://wovalab.gitlab.io/open-source/labview-doc-generator/[Antidoc] 
+
+Maintainer website: https://wovalab.com[Wovalab] 
+
+BSD 3-Clause License
+
+Copyright (C) 2019, Wovalab,
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+==== Asciidoc for LabVIEW(TM)
+
+Project website: https://wovalab.gitlab.io/open-source/asciidoc-toolkit/[Asciidoc toolkit] 
+
+Maintainer website: https://wovalab.com[Wovalab] 
+
+BSD 3-Clause License
+
+Copyright (C) 2019, Wovalab,
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+==== Graph Builder
+
+Project website: https://gitlab.com/cgambini/graph-builder[Graph Builder]
+
+BSD 3-Clause License
+
+Copyright (c) 2020, Cyril GAMBINI
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+=== Product used in the project
+
+Antidoc hasn't been able to detect third party products in the project.
+This is the author's responsibility to list any of the missing product used.
